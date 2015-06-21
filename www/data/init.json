@@ -1,0 +1,322 @@
+{
+  "error": null,
+  "activePlayerId": "3",
+  "playerId": "3",
+  "globalModdifires": [],
+  "enemySection": {
+    "top": {
+      "cards": [{
+        "id": 25,
+        "type": "TROOPS",
+        "position": [
+          "TOP"
+        ],
+        "name": "Геральт из Ривии",
+        "description": "Описание",
+        "attack": 15,
+        "modifyAttack": [],
+        "fraction": "NEUTRAL",
+        "special": [
+          "HEROE"
+        ],
+        "sumAttack": 15,
+        "img": "neu_zoltan.png"
+      }],
+      "modifiers": [],
+      "globalModifiers": [],
+      "sumAttack": 0
+    },
+    "middle": {
+      "cards": [{
+        "id": 25,
+        "type": "TROOPS",
+        "position": [
+          "TOP"
+        ],
+        "name": "Геральт из Ривии",
+        "description": "Описание",
+        "attack": 15,
+        "modifyAttack": [],
+        "fraction": "NEUTRAL",
+        "special": [
+          "HEROE"
+        ],
+        "sumAttack": 15,
+        "img": "neu_zoltan.png"
+      }],
+      "modifiers": [],
+      "globalModifiers": [],
+      "sumAttack": 0
+    },
+    "bottom": {
+      "cards": [{
+        "id": 25,
+        "type": "TROOPS",
+        "position": [
+          "TOP"
+        ],
+        "name": "Геральт из Ривии",
+        "description": "Описание",
+        "attack": 15,
+        "modifyAttack": [],
+        "fraction": "NEUTRAL",
+        "special": [
+          "HEROE"
+        ],
+        "sumAttack": 15,
+        "img": "neu_zoltan.png"
+      }],
+      "modifiers": [],
+      "globalModifiers": [],
+      "sumAttack": 0
+    },
+    "sumAttack": 0
+  },
+  "enemyRelease": [],
+  "enemyDeckSize": 7,
+  "section": {
+    "top": {
+      "cards": [{
+        "id": 25,
+        "type": "TROOPS",
+        "position": [
+          "TOP"
+        ],
+        "name": "Геральт из Ривии",
+        "description": "Описание",
+        "attack": 15,
+        "modifyAttack": [],
+        "fraction": "NEUTRAL",
+        "special": [
+          "HEROE"
+        ],
+        "sumAttack": 15,
+        "img": "neu_zoltan.png"
+      }],
+      "modifiers": [],
+      "globalModifiers": [],
+      "sumAttack": 0
+    },
+    "middle": {
+      "cards": [{
+        "id": 25,
+        "type": "TROOPS",
+        "position": [
+          "TOP"
+        ],
+        "name": "Геральт из Ривии",
+        "description": "Описание",
+        "attack": 15,
+        "modifyAttack": [],
+        "fraction": "NEUTRAL",
+        "special": [
+          "HEROE"
+        ],
+        "sumAttack": 15,
+        "img": "neu_zoltan.png"
+      }],
+      "modifiers": [],
+      "globalModifiers": [],
+      "sumAttack": 0
+    },
+    "bottom": {
+      "cards": [{
+        "id": 25,
+        "type": "TROOPS",
+        "position": [
+          "TOP"
+        ],
+        "name": "Геральт из Ривии",
+        "description": "Описание",
+        "attack": 15,
+        "modifyAttack": [],
+        "fraction": "NEUTRAL",
+        "special": [
+          "HEROE"
+        ],
+        "sumAttack": 15,
+        "img": "neu_zoltan.png"
+      }],
+      "modifiers": [],
+      "globalModifiers": [],
+      "sumAttack": 0
+    },
+    "sumAttack": 0
+  },
+  "hand": [
+    {
+      "id": 22,
+      "type": "SPECIAL",
+      "position": [
+        "MIDDLE"
+      ],
+      "name": "Мгла",
+      "description": "Описание",
+      "attack": 0,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "LINE_DOWN"
+      ],
+      "sumAttack": 0,
+      "img": "neu_avallach.png"
+    },
+    {
+      "id": 19,
+      "type": "SPECIAL",
+      "position": [
+        "TOP",
+        "MIDDLE",
+        "BOTTOM"
+      ],
+      "name": "Командирский рог",
+      "description": "Описание",
+      "attack": 0,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "LINE_UP"
+      ],
+      "sumAttack": 0,
+      "img": "neu_ciri.png"
+    },
+    {
+      "id": 21,
+      "type": "SPECIAL",
+      "position": [
+        "TOP"
+      ],
+      "name": "Мороз",
+      "description": "Описание",
+      "attack": 0,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "LINE_DOWN"
+      ],
+      "sumAttack": 0,
+      "img": "neu_dandelion.png"
+    },
+    {
+      "id": 34,
+      "type": "TROOPS",
+      "position": [
+        "TOP"
+      ],
+      "name": "Таинственный Эльф",
+      "description": "Описание",
+      "attack": 0,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "SPY"
+      ],
+      "sumAttack": 0,
+      "img": "neu_emiel.png"
+    },
+    {
+      "id": 26,
+      "type": "TROOPS",
+      "position": [
+        "TOP"
+      ],
+      "name": "Весемир",
+      "description": "Описание",
+      "attack": 6,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [],
+      "sumAttack": 6,
+      "img": "neu_geralt.png"
+    },
+    {
+      "id": 32,
+      "type": "TROOPS",
+      "position": [
+        "TOP"
+      ],
+      "name": "Эмиель Регис",
+      "description": "Описание",
+      "attack": 5,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [],
+      "sumAttack": 5,
+      "img": "neu_triss.png"
+    },
+    {
+      "id": 28,
+      "type": "TROOPS",
+      "position": [
+        "TOP"
+      ],
+      "name": "Цирилла",
+      "description": "Описание",
+      "attack": 15,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "HEROE"
+      ],
+      "sumAttack": 15,
+      "img": "neu_vesemir.png"
+    },
+    {
+      "id": 20,
+      "type": "SPECIAL",
+      "position": [
+        "TOP",
+        "MIDDLE",
+        "BOTTOM"
+      ],
+      "name": "Казнь",
+      "description": "Описание",
+      "attack": 0,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "EXECUTION"
+      ],
+      "sumAttack": 0,
+      "img": "neu_villen.png"
+    },
+    {
+      "id": 18,
+      "type": "SPECIAL",
+      "position": [
+        "TOP",
+        "MIDDLE",
+        "BOTTOM"
+      ],
+      "name": "Чучело",
+      "description": "Описание",
+      "attack": 0,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "RETURN_CARD"
+      ],
+      "sumAttack": 0,
+      "img": "neu_yennefer.png"
+    },
+    {
+      "id": 25,
+      "type": "TROOPS",
+      "position": [
+        "TOP"
+      ],
+      "name": "Геральт из Ривии",
+      "description": "Описание",
+      "attack": 15,
+      "modifyAttack": [],
+      "fraction": "NEUTRAL",
+      "special": [
+        "HEROE"
+      ],
+      "sumAttack": 15,
+      "img": "neu_zoltan.png"
+    }
+  ],
+  "release": [],
+  "deckSize": 7
+}

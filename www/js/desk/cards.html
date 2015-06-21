@@ -1,0 +1,12 @@
+<ion-view view-title="my cards">
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">Игра</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-scroll class="has-header padding" direction="x">
+            <div class="overflowingContent">
+                <img ng-repeat="card in deskCards" ng-src="img/server/{{card.img}}" ng-click = "moveCard(card)" class="cards" >
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-view>

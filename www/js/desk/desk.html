@@ -1,0 +1,78 @@
+<ion-view view-title="Home">
+    <div class="bar bar-stable">
+        <button class="button button-clear" ng-click="myCards()">Моя колода</button>
+        <div class="title">Игра в процессе</div>
+        <button class="button button-clear" ng-click="move()">Сделать ход</button>
+    </div>
+        <ion-content class="has-header padding">
+            <ion-refresher
+                    pulling-text="Потяните, чтобы обновить доску"
+                    on-refresh="doRefresh()">
+            </ion-refresher>
+            <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true" active-slide="activeSlide">
+                <!-- Свой игрок-->
+                <ion-slide>
+                    <h2>Ид игрока - {{data.playerId}}. Сумма очков = {{data.section.sumAttack}} </h2>
+                    <div class="list">
+                        <div class="item item-divider">
+                            Верхняя секция. Сумма очков {{data.section.top.sumAttack}}
+                        </div>
+                        <a ng-repeat="topCard in data.section.top.cards" class="item item-thumbnail-left">
+                            <img src="img/server/{{topCard.img}}">
+                            <h2>{{topCard.name}}</h2>
+                            <p>{{topCard.description}}</p>
+                        </a>
+                        <div class="item item-divider">
+                            Средняя секция. Сумма очков {{data.section.middle.sumAttack}}
+                        </div>
+                        <a ng-repeat="middleCard in data.section.middle.cards" class="item item-thumbnail-left">
+                            <img src="img/server/{{middleCard.img}}">
+                            <h2>{{middleCard.name}}</h2>
+                            <p>{{middleCard.description}}</p>
+                        </a>
+                        <div class="item item-divider">
+                            Средняя секция. Сумма очков {{data.section.bottom.sumAttack}}
+                        </div>
+                        <a ng-repeat="bottomCard in data.section.bottom.cards" class="item item-thumbnail-left">
+                            <img src="img/server/{{bottomCard.img}}">
+                            <h2>{{bottomCard.name}}</h2>
+                            <p>{{bottomCard.description}}</p>
+                        </a>
+                    </div>
+                </ion-slide>
+                <!-- Соперник-->
+                <ion-slide>
+                    <h2>Враг.  Сумма очков = {{data.enemySection.sumAttack}} </h2>
+                    <div class="list">
+                        <div class="item item-divider">
+                            Верхняя секция. Сумма очков {{data.enemySection.top.sumAttack}}
+                        </div>
+                        <a ng-repeat="topCard in data.enemySection.top.cards" class="item item-thumbnail-left">
+                            <img src="img/server/{{topCard.img}}">
+                            <h2>{{topCard.name}}</h2>
+                            <p>{{topCard.description}}</p>
+                        </a>
+                        <div class="item item-divider">
+                            Средняя секция. Сумма очков {{data.enemySection.middle.sumAttack}}
+                        </div>
+                        <a ng-repeat="middleCard in data.enemySection.middle.cards" class="item item-thumbnail-left">
+                            <img src="img/server/{{middleCard.img}}">
+                            <h2>{{middleCard.name}}</h2>
+                            <p>{{middleCard.description}}</p>
+                        </a>
+                        <div class="item item-divider">
+                            Средняя секция. Сумма очков {{data.enemySection.bottom.sumAttack}}
+                        </div>
+                        <a ng-repeat="bottomCard in data.enemySection.bottom.cards" class="item item-thumbnail-left">
+                            <img src="img/server/{{bottomCard.img}}">
+                            <h2>{{bottomCard.name}}</h2>
+                            <p>{{bottomCard.description}}</p>
+                        </a>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </ion-content>
+    <div class="bar bar-footer">
+        <div class="title">Очки</div>
+    </div>
+</ion-view>
