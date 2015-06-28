@@ -14,14 +14,14 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
     };
 
     $scope.data = wsService.getData();
-
+    $scope.status = wsService.getStatus();
     $scope.$on('wsMessage', function () {
-        console.log('wsMessage deskCtrl');
-
-        $scope.data = wsService.getData();
-        console.log(JSON.stringify($scope.data));
-        if ($scope.data && $scope.data.error) {
-            // An alert dialog
+        $scope.$apply(function () {
+            $scope.data = wsService.getData();
+            $scope.status = wsService.getStatus();
+            console.log('обработано сообщение');
+            if ($scope.data && $scope.data.error) {
+                // An alert dialog
                 var alertPopup = $ionicPopup.alert({
                     title: 'Ошибка!',
                     template: $scope.data.error
@@ -29,7 +29,8 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
                 alertPopup.then(function(res) {
                     console.log('Обработали нажатие алерта');
                 });
-        }
+            }
+        });
     });
     $scope.$on('wsOpen', function () {
         console.log('Oh my gosh, websocket is really open! Fukken awesome!');
@@ -47,6 +48,7 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
 
     $scope.doRefresh = function () {
         $scope.data = wsService.getData();
+        $scope.status = wsService.getStatus();
         $scope.$broadcast('scroll.refreshComplete');
     }
 });

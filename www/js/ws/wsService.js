@@ -31,11 +31,10 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
                     data = result;
                 } else {
                     var alertPopup = $ionicPopup.alert({
-                        title: 'Ошибка!',
+                        title: 'Внимание!',
                         template: result
                     });
                 }
-
 
                 if (result && result.hand) {
                     cardService.setDeskCards(result.hand);
@@ -46,23 +45,24 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
                 cardService.clearDeskCards();
                 $rootScope.$broadcast('wsClose');
             });
-            return ws;
         },
         /**
          * Make a move with card
-         * @param index index of a card 0-9
+         * @param cardId Card index
          */
-        moveCard : function (index) {
-            console.log('moveCard card index ' + index);
-            if (index >= 0 && index < 10) {
-                ws.$emit('play ' + index);
-            } else {
-                console.log('incorrect index ' + index)
-            }
+        moveCard : function (cardId, position) {
+            ws.$emit('PLAY', {'id' : cardId, 'position' : position});
         },
 
         getData : function () {
             return data;
+        },
+        /**
+         * Возвращает статус игры
+         * @returns {string}
+         */
+        getStatus : function () {
+            return data ? (data.activePlayerId == data.playerId) ? 'Ваш ход': 'Ожидание хода соперника' : 'Ожидание соперника';
         }
     };
 });
