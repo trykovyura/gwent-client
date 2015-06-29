@@ -3,37 +3,57 @@
  * @author trykov
  */
 app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $ionicModal) {
-
+    /**
+     * Карты игрока
+     */
     $scope.deskCards = cardService.getDeskCards();
+    /**
+     * Статус игры
+     */
     $scope.status =  $scope.status = wsService.getStatus();
+    /**
+     * Сделать ход
+     * @param card карта для хода
+     * @param position позиция карты
+     */
     $scope.moveCard = function (card, position) {
+        $scope.card = card;
         if (!position && card.position.length && card.position.length > 1) {
             $scope.showModal(card);
         } else {
-            wsService.moveCard(card.id);
+            wsService.moveCard(card.id, position);
             $state.go('desk');
         }
 
     };
+    /**
+     * Обновляем статус в хедере
+     */
     $scope.$on('wsMessage', function () {
         $scope.status =  $scope.status = wsService.getStatus();
     });
 
-    $scope.showModal = function (card) {
+    /**
+     * Открывает меню выбора позиции
+     */
+    $scope.showModal = function () {
         $ionicModal.fromTemplateUrl('js/modal/position.html', {
             scope: $scope,
-            animation: 'slide-in-up',
-            card : card
+            animation: 'slide-in-up'
         }).then(function (modal) {
             $scope.modal = modal;
-            $scope.modal.show()
+            $scope.modal.show();
         })
     };
 
+    /**
+     * При смене состояния закрываем модальное окно
+     */
     $scope.$on('$destroy', function () {
         if ($scope.modal) {
             $scope.modal.remove();
         }
+        $scope.card = null;
     });
 
 

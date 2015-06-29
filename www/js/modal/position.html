@@ -4,6 +4,6 @@
     </ion-header-bar>
     <ion-content>
         <button ng-repeat="pos in card.position track by $index" class="button button-full button-energized"
-                ng-click="moveCard(card, pos)">Колода</button>
+                ng-click="moveCard(card, pos)">{{:: pos}}</button>
     </ion-content>
 </div>

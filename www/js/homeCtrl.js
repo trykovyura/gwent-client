@@ -4,16 +4,9 @@
  */
 app.controller('HomeCtrl', function ($scope, $ionicModal, $resource, $state, wsService, cardService) {
 
-    // Close the modal
-    $scope.closeModal = function () {
+    $scope.play = function () {
         $scope.modal.hide();
         $scope.modal.remove();
-    };
-    $scope.showCards = function () {
-        $scope.closeModal();
-    };
-    $scope.play = function () {
-        $scope.closeModal();
         wsService.newConnection();
     };
 
@@ -25,10 +18,6 @@ app.controller('HomeCtrl', function ($scope, $ionicModal, $resource, $state, wsS
             $scope.modal = modal;
             $scope.modal.show()
         })
-    };
-
-    $scope.openModal = function () {
-        $scope.modal.show()
     };
 
     $scope.$on('$destroy', function () {

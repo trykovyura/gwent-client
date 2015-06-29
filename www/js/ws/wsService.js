@@ -12,8 +12,6 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          * https://github.com/wilk/ng-websocket/issues/11
          */
         newConnection : function () {
-            lastMessageData = null;
-            console.log('ws newConnection');
             ws = $websocket.$new({
                 url: 'ws://localhost:8080/server-1.0-SNAPSHOT/gwent',
                 lazy: false,
@@ -23,9 +21,11 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
                 mock: false,
                 protocols: []
             });
+            //открылось соедиение
             ws.$on('$open', function () {
                 $rootScope.$broadcast('wsOpen');
             });
+            //получили сообщение
             ws.$on('$message', function (result){
                 if (angular.isObject(result)) {
                     data = result;
@@ -41,6 +41,7 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
                 }
                 $rootScope.$broadcast('wsMessage');
             });
+            //закрылось соединение
             ws.$on('$close', function () {
                 cardService.clearDeskCards();
                 $rootScope.$broadcast('wsClose');
@@ -53,13 +54,15 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
         moveCard : function (cardId, position) {
             ws.$emit('PLAY', {'id' : cardId, 'position' : position});
         },
-
+        /**
+         * Данные, полученные от вебсокета, обновляем их в сервисе, чтобы были доступны по всех scope
+         */
         getData : function () {
             return data;
         },
         /**
          * Возвращает статус игры
-         * @returns {string}
+         * @returns {string} статус
          */
         getStatus : function () {
             return data ? (data.activePlayerId == data.playerId) ? 'Ваш ход': 'Ожидание хода соперника' : 'Ожидание соперника';
