@@ -10,6 +10,10 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
         $state.go('cards');
     };
 
+    $scope.skip = function () {
+        wsService.skip();
+        $scope.isSkiped = wsService.isSkiped();
+    };
     /**
      * Данные от сервера
      */
@@ -18,6 +22,11 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
      * Статус игры
      */
     $scope.status = wsService.getStatus();
+
+    /**
+     * Статус сброса карт
+     */
+    $scope.isSkiped = wsService.isSkiped();
 
     /**
      * Обновляем статус и данные при получении сообщения от вебсокета

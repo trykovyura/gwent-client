@@ -4,6 +4,8 @@
 app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPopup) {
     var ws;
     var data;
+    //Не сбрасывать карты
+    var isSkiped;
     return {
         /**
          * init connection with ws
@@ -54,6 +56,22 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
         moveCard : function (cardId, position) {
             ws.$emit('PLAY', {'id' : cardId, 'position' : position});
         },
+        /**
+         * Пропускаем сброс карт
+         */
+        skip : function () {
+            if (ws && !isSkiped) {
+                ws.$emit('SKIP_DROP');
+                isSkiped = true;
+            }
+        },
+        /**
+         * Статус сброса карт
+         */
+        isSkiped : function () {
+            return isSkiped;
+        },
+
         /**
          * Данные, полученные от вебсокета, обновляем их в сервисе, чтобы были доступны по всех scope
          */

@@ -2,16 +2,16 @@
     <div class="bar bar-stable">
         <button class="button button-clear" ng-click="myCards()">Моя колода</button>
         <div class="title"></div>
-        <button class="button button-clear"></button>
+        <button class="button button-clear" ng-hide="isSkiped" ng-click="skip()">Не сбрасывать</button>
     </div>
     <div class="bar bar-subheader">
         <h2 class="title">{{status}}</h2>
     </div>
         <ion-content class="has-header has-subheader padding">
             <ion-refresher
-                    pulling-text="Потяните, чтобы обновить доску"
-                    on-refresh="doRefresh()">
-            </ion-refresher>
+                pulling-text="Потяните, чтобы обновить доску"
+                on-refresh="doRefresh()">
+        </ion-refresher>
             <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true" active-slide="activeSlide">
                 <!-- Свой игрок-->
                 <ion-slide>
