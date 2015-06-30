@@ -3,6 +3,7 @@
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0",
-    "angular-resource": "~1.4.1"
+    "angular-resource": "~1.4.1",
+    "ng-websocket": "~0.2.1"
   }
 }
