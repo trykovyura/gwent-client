@@ -10,7 +10,8 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
     /**
      * Статус игры
      */
-    $scope.status =  $scope.status = wsService.getStatus();
+    $scope.status = wsService.getStatus();
+
     /**
      * Сделать ход
      * @param card карта для хода
@@ -18,11 +19,16 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
      */
     $scope.moveCard = function (card, position) {
         $scope.card = card;
-        if (!position && card.position.length && card.position.length > 1) {
-            $scope.showModal(card);
-        } else {
-            wsService.moveCard(card.id, position);
-            $state.go('desk');
+                //режим сброса карт
+        if (wsService.isPrepareState()) {
+            wsService.dropCard(card.id);
+        } else { // режим игры
+            if (!position && card.position.length && card.position.length > 1) {
+                $scope.showModal(card);
+            } else {
+                wsService.moveCard(card.id, position);
+                $state.go('desk');
+            }
         }
 
     };
@@ -30,7 +36,10 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
      * Обновляем статус в хедере
      */
     $scope.$on('wsMessage', function () {
-        $scope.status =  $scope.status = wsService.getStatus();
+        $scope.status = wsService.getStatus();
+        if (wsService.isPrepareState()) {
+            $scope.deskCards = cardService.getDeskCards();
+        }
     });
 
     /**

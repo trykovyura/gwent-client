@@ -52,6 +52,7 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
         /**
          * Make a move with card
          * @param cardId Card index
+         * @param position Позиция для хода
          */
         moveCard : function (cardId, position) {
             ws.$emit('PLAY', {'id' : cardId, 'position' : position});
@@ -63,6 +64,15 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
             if (ws && !isSkiped) {
                 ws.$emit('SKIP_DROP');
                 isSkiped = true;
+            }
+        },
+        /**
+         * Сброс карты
+         * @param cardId Идентификатор карты
+         */
+        dropCard: function (cardId) {
+            if (ws && data && data.state === 'PREPARE') {
+                ws.$emit('DROP', {id : cardId});
             }
         },
         /**
@@ -82,8 +92,14 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          * Возвращает статус игры
          * @returns {string} статус
          */
-        getStatus : function () {
-            return data ? (data.activePlayerId == data.playerId) ? 'Ваш ход': 'Ожидание хода соперника' : 'Ожидание соперника';
+        getStatus: function () {
+            return data ? (data.activePlayerId === data.playerId) ? 'Ваш ход' : 'Ожидание хода соперника' : 'Ожидание соперника';
+        },
+        /**
+         * Состояние стола
+         */
+        isPrepareState: function () {
+            return data ? data.state === 'PREPARE' : false;
         }
     };
 });
