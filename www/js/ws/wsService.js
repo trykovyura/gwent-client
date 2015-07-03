@@ -14,15 +14,20 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          * https://github.com/wilk/ng-websocket/issues/11
          */
         newConnection : function () {
-            ws = $websocket.$new({
-                url: 'ws://localhost:8080/server-1.0-SNAPSHOT/gwent',
-                lazy: false,
-                reconnect: false,
-                reconnectInterval: 2000,
-                enqueue: false,
-                mock: false,
-                protocols: []
-            });
+            if (!ws) {
+                ws = $websocket.$new({
+                    url: 'ws://localhost:8080/server-1.0-SNAPSHOT/gwent',
+                    lazy: false,
+                    reconnect: false,
+                    reconnectInterval: 2000,
+                    enqueue: false,
+                    mock: false,
+                    protocols: []
+                });
+                console.log(ws.$status());
+            } else {
+                ws.$open();
+            }
             //открылось соедиение
             ws.$on('$open', function () {
                 $rootScope.$broadcast('wsOpen');

@@ -7,134 +7,193 @@
     <div class="bar bar-subheader">
         <h2 class="title">{{status}}</h2>
     </div>
-        <ion-content class="has-header has-subheader padding">
-            <ion-refresher
+    <ion-content class="has-header has-subheader padding">
+        <ion-refresher
                 pulling-text="Потяните, чтобы обновить доску"
                 on-refresh="doRefresh()">
         </ion-refresher>
-            <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true" active-slide="activeSlide">
-                <!-- Свой игрок-->
-                <ion-slide>
-                    <h2>Ид игрока - {{data.playerId}}. Сумма очков = {{data.section.sumAttack}} </h2>
-                    <div class="list">
-                        <div class="item item-divider">
-                            Верхняя секция. Сумма очков {{data.section.top.sumAttack}}
-                        </div>
-                        <a ng-repeat="topCard in data.section.top.cards" class="item item-thumbnail-left">
-                            <img src="img/server/{{topCard.img}}">
-                            <h2>{{topCard.name}}</h2>
-                            <p>{{topCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.section.top.modifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{topCard.img}}">
-                            <h2>{{topCard.name}}</h2>
-                            <p>{{topCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.section.top.globalModifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{topCard.img}}">
-                            <h2>{{topCard.name}}</h2>
-                            <p>{{topCard.description}}</p>
-                        </a>
-                        <div class="item item-divider">
-                            Средняя секция. Сумма очков {{data.section.middle.sumAttack}}
-                        </div>
-                        <a ng-repeat="middleCard in data.section.middle.cards" class="item item-thumbnail-left">
-                            <img src="img/server/{{middleCard.img}}">
-                            <h2>{{middleCard.name}}</h2>
-                            <p>{{middleCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.section.middle.modifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{middleCard.img}}">
-                            <h2>{{middleCard.name}}</h2>
-                            <p>{{middleCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.section.middle.globalModifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{middleCard.img}}">
-                            <h2>{{middleCard.name}}</h2>
-                            <p>{{middleCard.description}}</p>
-                        </a>
-                        <div class="item item-divider">
-                            Нижняя секция. Сумма очков {{data.section.bottom.sumAttack}}
-                        </div>
-                        <a ng-repeat="bottomCard in data.section.bottom.cards" class="item item-thumbnail-left">
-                            <img src="img/server/{{bottomCard.img}}">
-                            <h2>{{bottomCard.name}}</h2>
-                            <p>{{bottomCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.section.bottom.modifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{bottomCard.img}}">
-                            <h2>{{bottomCard.name}}</h2>
-                            <p>{{bottomCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.section.bottom.globalModifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{bottomCard.img}}">
-                            <h2>{{bottomCard.name}}</h2>
-                            <p>{{bottomCard.description}}</p>
-                        </a>
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true" active-slide="activeSlide">
+            <!-- Свой игрок-->
+            <ion-slide>
+                <h2>Ид игрока - {{data.playerId}}. Сумма очков = {{data.section.sumAttack}} </h2>
+
+                <div class="list">
+                    <div class="item item-divider">
+                        Верхняя секция. Сумма очков {{data.section.top.sumAttack}}
                     </div>
-                </ion-slide>
-                <!-- Соперник-->
-                <ion-slide>
-                    <h2>Враг.  Сумма очков = {{data.enemySection.sumAttack}} </h2>
-                    <div class="list">
-                        <div class="item item-divider">
-                            Верхняя секция. Сумма очков {{data.enemySection.top.sumAttack}}
-                        </div>
-                        <a ng-repeat="topCard in data.enemySection.top.cards" class="item item-thumbnail-left">
-                            <img src="img/server/{{topCard.img}}">
-                            <h2>{{topCard.name}}</h2>
-                            <p>{{topCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.enemySection.top.modifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{topCard.img}}">
-                            <h2>{{topCard.name}}</h2>
-                            <p>{{topCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.enemySection.top.globalModifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{topCard.img}}">
-                            <h2>{{topCard.name}}</h2>
-                            <p>{{topCard.description}}</p>
-                        </a>
-                        <div class="item item-divider">
-                            Средняя секция. Сумма очков {{data.enemySection.middle.sumAttack}}
-                        </div>
-                        <a ng-repeat="middleCard in data.enemySection.middle.cards" class="item item-thumbnail-left">
-                            <img src="img/server/{{middleCard.img}}">
-                            <h2>{{middleCard.name}}</h2>
-                            <p>{{middleCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.enemySection.middle.modifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{middleCard.img}}">
-                            <h2>{{middleCard.name}}</h2>
-                            <p>{{middleCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.enemySection.middle.globalModifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{middleCard.img}}">
-                            <h2>{{middleCard.name}}</h2>
-                            <p>{{middleCard.description}}</p>
-                        </a>
-                        <div class="item item-divider">
-                            Нижняя секция. Сумма очков {{data.enemySection.bottom.sumAttack}}
-                        </div>
-                        <a ng-repeat="bottomCard in data.enemySection.bottom.cards" class="item item-thumbnail-left">
-                            <img src="img/server/{{bottomCard.img}}">
-                            <h2>{{bottomCard.name}}</h2>
-                            <p>{{bottomCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.enemySection.bottom.modifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{bottomCard.img}}">
-                            <h2>{{bottomCard.name}}</h2>
-                            <p>{{bottomCard.description}}</p>
-                        </a>
-                        <a ng-repeat="bottomCard in data.enemySection.bottom.globalModifiers" class="item item-thumbnail-left">
-                            <img src="img/server/{{bottomCard.img}}">
-                            <h2>{{bottomCard.name}}</h2>
-                            <p>{{bottomCard.description}}</p>
-                        </a>
+                    <a ng-repeat="topCard in data.section.top.cards track by $index" class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{topCard.img}}">
+
+                        <h2>{{topCard.name}}</h2>
+
+                        <p>{{topCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.section.top.modifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{topCard.img}}">
+
+                        <h2>{{topCard.name}}</h2>
+
+                        <p>{{topCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.section.top.globalModifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{topCard.img}}">
+
+                        <h2>{{topCard.name}}</h2>
+
+                        <p>{{topCard.description}}</p>
+                    </a>
+
+                    <div class="item item-divider">
+                        Средняя секция. Сумма очков {{data.section.middle.sumAttack}}
                     </div>
-                </ion-slide>
-            </ion-slide-box>
-        </ion-content>
+                    <a ng-repeat="middleCard in data.section.middle.cards track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{middleCard.img}}">
+
+                        <h2>{{middleCard.name}}</h2>
+
+                        <p>{{middleCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.section.middle.modifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{middleCard.img}}">
+
+                        <h2>{{middleCard.name}}</h2>
+
+                        <p>{{middleCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.section.middle.globalModifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{middleCard.img}}">
+
+                        <h2>{{middleCard.name}}</h2>
+
+                        <p>{{middleCard.description}}</p>
+                    </a>
+
+                    <div class="item item-divider">
+                        Нижняя секция. Сумма очков {{data.section.bottom.sumAttack}}
+                    </div>
+                    <a ng-repeat="bottomCard in data.section.bottom.cards track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{bottomCard.img}}">
+
+                        <h2>{{bottomCard.name}}</h2>
+
+                        <p>{{bottomCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.section.bottom.modifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{bottomCard.img}}">
+
+                        <h2>{{bottomCard.name}}</h2>
+
+                        <p>{{bottomCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.section.bottom.globalModifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{bottomCard.img}}">
+
+                        <h2>{{bottomCard.name}}</h2>
+
+                        <p>{{bottomCard.description}}</p>
+                    </a>
+                </div>
+            </ion-slide>
+            <!-- Соперник-->
+            <ion-slide>
+                <h2>Враг. Сумма очков = {{data.enemySection.sumAttack}} </h2>
+
+                <div class="list">
+                    <div class="item item-divider">
+                        Верхняя секция. Сумма очков {{data.enemySection.top.sumAttack}}
+                    </div>
+                    <a ng-repeat="topCard in data.enemySection.top.cards track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{topCard.img}}">
+
+                        <h2>{{topCard.name}}</h2>
+
+                        <p>{{topCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.enemySection.top.modifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{topCard.img}}">
+
+                        <h2>{{topCard.name}}</h2>
+
+                        <p>{{topCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.enemySection.top.globalModifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{topCard.img}}">
+
+                        <h2>{{topCard.name}}</h2>
+
+                        <p>{{topCard.description}}</p>
+                    </a>
+
+                    <div class="item item-divider">
+                        Средняя секция. Сумма очков {{data.enemySection.middle.sumAttack}}
+                    </div>
+                    <a ng-repeat="middleCard in data.enemySection.middle.cards track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{middleCard.img}}">
+
+                        <h2>{{middleCard.name}}</h2>
+
+                        <p>{{middleCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.enemySection.middle.modifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{middleCard.img}}">
+
+                        <h2>{{middleCard.name}}</h2>
+
+                        <p>{{middleCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.enemySection.middle.globalModifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{middleCard.img}}">
+
+                        <h2>{{middleCard.name}}</h2>
+
+                        <p>{{middleCard.description}}</p>
+                    </a>
+
+                    <div class="item item-divider">
+                        Нижняя секция. Сумма очков {{data.enemySection.bottom.sumAttack}}
+                    </div>
+                    <a ng-repeat="bottomCard in data.enemySection.bottom.cards track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{bottomCard.img}}">
+
+                        <h2>{{bottomCard.name}}</h2>
+
+                        <p>{{bottomCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.enemySection.bottom.modifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{bottomCard.img}}">
+
+                        <h2>{{bottomCard.name}}</h2>
+
+                        <p>{{bottomCard.description}}</p>
+                    </a>
+                    <a ng-repeat="bottomCard in data.enemySection.bottom.globalModifiers track by $index"
+                       class="item item-thumbnail-left">
+                        <img ng-src="img/server/{{bottomCard.img}}">
+
+                        <h2>{{bottomCard.name}}</h2>
+
+                        <p>{{bottomCard.description}}</p>
+                    </a>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
     <div class="bar bar-footer">
         <div class="title">Очки</div>
     </div>
