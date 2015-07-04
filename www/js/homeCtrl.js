@@ -2,10 +2,17 @@
  * Home controller
  * @author trykov
  */
-app.controller('HomeCtrl', function ($scope, $ionicModal, $resource, $state, wsService, cardService) {
+app.controller('HomeCtrl', function ($scope, $state, wsService) {
 
+    /**
+     * Кнопка играть/возобновить игру
+     */
     $scope.play = function () {
-        wsService.newConnection();
+        if (wsService.isConnected()) {
+            $state.go('desk');
+        } else {
+            wsService.newConnection();
+        }
     };
 
     /**

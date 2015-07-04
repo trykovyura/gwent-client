@@ -4,15 +4,10 @@
  */
 app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsService, $ionicPopup) {
     /**
-     * Переход к своей колоде
+     * Пропустить сброс карт
      */
-    $scope.myCards = function () {
-        $state.go('cards');
-    };
-
     $scope.skip = function () {
         wsService.skip();
-        $scope.isSkiped = wsService.isSkiped();
     };
     /**
      * Данные от сервера
@@ -26,7 +21,7 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
     /**
      * Статус сброса карт
      */
-    $scope.isSkiped = wsService.isSkiped();
+    $scope.isPrepareState = wsService.isPrepareState();
 
     /**
      * Обновляем статус и данные при получении сообщения от вебсокета
@@ -35,6 +30,7 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
         $scope.$apply(function () {
             $scope.data = wsService.getData();
             $scope.status = wsService.getStatus();
+            $scope.isPrepareState = wsService.isPrepareState();
             console.log('обработано сообщение');
             //Если получили сообщение - показываем
             if ($scope.data && $scope.data.error) {
@@ -50,19 +46,12 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
         });
     });
     /**
-     * Обработка открытия соединения
-     */
-    $scope.$on('wsOpen', function () {
-        console.log('Oh my gosh, websocket is really open! Fukken awesome!');
-    });
-    /**
      * Обработка закрытия соединения
      */
     $scope.$on('wsClose', function () {
-        console.log('Noooooooooou, ws closed!');
         var alertPopup = $ionicPopup.alert({
-            title: 'Извините!',
-            template: 'Связь прервалась. Ищите другого соперника'
+            title: 'Внимание!',
+            template: 'Связь прервалась!'
         });
         alertPopup.then(function(res) {
             $state.go('home');

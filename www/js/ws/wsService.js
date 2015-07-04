@@ -105,6 +105,13 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          */
         isPrepareState: function () {
             return data ? data.state === 'PREPARE' : false;
+        },
+
+        /**
+         * Есть ли соединение с сервером ws
+         */
+        isConnected: function () {
+            return ws ? ws.$status() === ws.$OPEN : false;
         }
     };
 });

@@ -5,7 +5,7 @@
     <ion-content>
         <ion-scroll class="has-header padding" direction="x">
             <div class="overflowingContent">
-                <img ng-repeat="card in deskCards" ng-src="img/server/{{card.img}}" ng-click="moveCard(card)"
+                <img ng-repeat="card in deskCards track by $index" ng-src="img/server/{{card.img}}" ng-click="moveCard(card)"
                      class="cards">
             </div>
         </ion-scroll>

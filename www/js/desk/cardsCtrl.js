@@ -2,7 +2,7 @@
  * Cards Ctrl for making move
  * @author trykov
  */
-app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $ionicModal) {
+app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $ionicModal, $ionicPopup) {
     /**
      * Карты игрока
      */
@@ -22,6 +22,16 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
                 //режим сброса карт
         if (wsService.isPrepareState()) {
             wsService.dropCard(card.id);
+            $ionicPopup.alert({
+                title: 'Вы сбросили карту!',
+                template: card.name
+            }).then(function () {
+                if (!wsService.isPrepareState()) {
+                    //TODO не переходить если наш ход
+                    $state.go('desk');
+                }
+            });
+
         } else { // режим игры
             if (!position && card.position.length && card.position.length > 1) {
                 $scope.showModal(card);
@@ -36,10 +46,12 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
      * Обновляем статус в хедере
      */
     $scope.$on('wsMessage', function () {
-        $scope.status = wsService.getStatus();
-        if (wsService.isPrepareState()) {
-            $scope.deskCards = cardService.getDeskCards();
-        }
+        $scope.$apply(function () {
+            $scope.status = wsService.getStatus();
+            if (wsService.isPrepareState()) {
+                $scope.deskCards = cardService.getDeskCards();
+            }
+        });
     });
 
     /**
