@@ -1,0 +1,86 @@
+<h2>Ид игрока - {{data.playerId}}. Сумма очков = {{data.section.sumAttack}} </h2>
+
+<div class="list">
+    <div class="item item-divider">
+        Верхняя секция. Сумма очков {{data.section.top.sumAttack}}
+    </div>
+    <a ng-repeat="topCard in data.section.top.cards track by $index" class="item item-thumbnail-left">
+        <img ng-src="img/server/{{topCard.img}}">
+
+        <h2>{{topCard.name}}</h2>
+
+        <p>{{topCard.description}}</p>
+    </a>
+    <a ng-repeat="bottomCard in data.section.top.modifiers track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{topCard.img}}">
+
+        <h2>{{topCard.name}}</h2>
+
+        <p>{{topCard.description}}</p>
+    </a>
+    <a ng-repeat="bottomCard in data.section.top.globalModifiers track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{topCard.img}}">
+
+        <h2>{{topCard.name}}</h2>
+
+        <p>{{topCard.description}}</p>
+    </a>
+
+    <div class="item item-divider">
+        Средняя секция. Сумма очков {{data.section.middle.sumAttack}}
+    </div>
+    <a ng-repeat="middleCard in data.section.middle.cards track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{middleCard.img}}">
+
+        <h2>{{middleCard.name}}</h2>
+
+        <p>{{middleCard.description}}</p>
+    </a>
+    <a ng-repeat="bottomCard in data.section.middle.modifiers track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{middleCard.img}}">
+
+        <h2>{{middleCard.name}}</h2>
+
+        <p>{{middleCard.description}}</p>
+    </a>
+    <a ng-repeat="bottomCard in data.section.middle.globalModifiers track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{middleCard.img}}">
+
+        <h2>{{middleCard.name}}</h2>
+
+        <p>{{middleCard.description}}</p>
+    </a>
+
+    <div class="item item-divider">
+        Нижняя секция. Сумма очков {{data.section.bottom.sumAttack}}
+    </div>
+    <a ng-repeat="bottomCard in data.section.bottom.cards track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{bottomCard.img}}">
+
+        <h2>{{bottomCard.name}}</h2>
+
+        <p>{{bottomCard.description}}</p>
+    </a>
+    <a ng-repeat="bottomCard in data.section.bottom.modifiers track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{bottomCard.img}}">
+
+        <h2>{{bottomCard.name}}</h2>
+
+        <p>{{bottomCard.description}}</p>
+    </a>
+    <a ng-repeat="bottomCard in data.section.bottom.globalModifiers track by $index"
+       class="item item-thumbnail-left">
+        <img ng-src="img/server/{{bottomCard.img}}">
+
+        <h2>{{bottomCard.name}}</h2>
+
+        <p>{{bottomCard.description}}</p>
+    </a>
+</div>

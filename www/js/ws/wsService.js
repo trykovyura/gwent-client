@@ -72,6 +72,14 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
             }
         },
         /**
+         * Сделать пасс(закончить раунд)
+         */
+        pass : function () {
+            if (ws) {
+                ws.$emit('PASS');
+            }
+        },
+        /**
          * Сброс карты
          * @param cardId Идентификатор карты
          */
