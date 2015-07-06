@@ -104,7 +104,13 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
         }
     }
 
-
+    $scope.timeout = function () {
+        if (wsService.isPrepareState()) {
+            wsService.skip();
+        } else {
+            wsService.pass();
+        }
+    };
 
 
 });

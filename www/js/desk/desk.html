@@ -5,7 +5,9 @@
         <button class="button button-clear" ng-click="skip()">{{skipButtonName}}</button>
     </div>
     <div class="bar bar-subheader">
-        <h2 class="title">{{status}}</h2>
+        <timer interval="1000" countdown="30" finish-callback="timeout()">
+            <h2 class="title">{{$parent.status}} {{countdown}} сек.</h2>
+        </timer>
     </div>
     <ion-content class="has-header has-subheader padding">
         <ion-refresher
