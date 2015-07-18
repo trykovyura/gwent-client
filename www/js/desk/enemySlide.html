@@ -40,7 +40,7 @@
 
         <p>{{middleCard.description}}</p>
     </a>
-    <a ng-repeat="bottomCard in data.enemySection.middle.modifiers track by $index"
+    <a ng-repeat="middleCard in data.enemySection.middle.modifiers track by $index"
        class="item item-thumbnail-left">
         <img ng-src="img/server/{{middleCard.img}}">
 
@@ -48,7 +48,7 @@
 
         <p>{{middleCard.description}}</p>
     </a>
-    <a ng-repeat="bottomCard in data.enemySection.middle.globalModifiers track by $index"
+    <a ng-repeat="middleCard in data.enemySection.middle.globalModifiers track by $index"
        class="item item-thumbnail-left">
         <img ng-src="img/server/{{middleCard.img}}">
 

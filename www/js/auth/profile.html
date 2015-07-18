@@ -1,0 +1,21 @@
+<ion-pane>
+    <ion-content class="has-header">
+            <div class="item item-avatar" ng-if="authData.google">
+                <img ng-src="{{authData.google.cachedUserProfile.avatar_url}}" alt="">
+                <h2>{{authData.google.displayName}}</h2>
+                <p>{{authData.google.username}}</p>
+                <p>google</p>
+            </div>
+    </ion-content>
+    <ion-tabs class="tabs-dark tabs-icon-top">
+        <a ui-sref="app.activity" class="tab-item">
+            <i class="icon ion-arrow-graph-up-right"></i> Activity
+        </a>
+        <a ui-sref="app.friends" class="tab-item">
+            <i class="icon ion-android-people"></i> Friends
+        </a>
+        <a ui-sref="app.gallery" class="tab-item">
+            <i class="icon ion-images"></i> Photos
+        </a>
+    </ion-tabs>
+</ion-pane>

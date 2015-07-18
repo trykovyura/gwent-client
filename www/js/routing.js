@@ -2,12 +2,12 @@
  * App routing for states
  */
 app.config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
     /**
      * Home state, opens window modal
      */
-    $stateProvider.state('home', {
-        url: '/',
+    $stateProvider.state('app', {
+        url: '/home',
         templateUrl: 'js/home.html',
         controller: 'HomeCtrl'
     });
@@ -15,10 +15,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     /**
      * Desk state for game, make move, watch enemy
      */
-    $stateProvider.state('desk', {
+    $stateProvider.state('app.desk', {
         url: '/desk',
-        templateUrl: 'js/desk/desk.html',
-        controller: 'DeskCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: "js/desk/desk.html",
+                controller: 'DeskCtrl'
+            }
+        }
     });
 
     /**
@@ -26,16 +30,40 @@ app.config(function ($stateProvider, $urlRouterProvider) {
      */
     $stateProvider.state('cards', {
         url: '/cards',
-        templateUrl: 'js/desk/cards.html',
+        templateUrl: 'js/desk/cards2.html',
         controller: 'CardsCtrl'
     });
 
     /**
      * Rules state
      */
-    $stateProvider.state('rules', {
+    $stateProvider.state('app.rules', {
         url: '/rules',
-        templateUrl: 'js/rules/rules.html',
-        controller: 'RulesCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: "js/rules/rules.html",
+                controller: 'RulesCtrl'
+            }
+        }
+    });
+
+    $stateProvider.state('app.auth', {
+        url: "/auth",
+        views: {
+            'menuContent': {
+                templateUrl: "js/auth/auth.html",
+                controller: 'authCtrl'
+            }
+        }
+    });
+
+    $stateProvider.state('app.profile', {
+        url: "/profile",
+        views: {
+            'menuContent': {
+                templateUrl: "js/auth/profile.html",
+                controller: 'authCtrl'
+            }
+        }
     });
 });

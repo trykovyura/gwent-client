@@ -8,3 +8,7 @@
     display:block;
     float:left;
 }
+
+.login {
+    background: url('../img/login.jpg') no-repeat center;
+}
