@@ -1,4 +1,8 @@
-app.controller('authCtrl', function($scope, Auth) {
+app.controller('authCtrl', function($scope, Auth, $ionicLoading, $ionicPopup, $state, $rootScope) {
+    $scope.loginData = {
+        username: '',
+        password: ''
+    };
     $scope.login = function(authMethod) {
         Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
             console.log('authData '+authData);
@@ -21,23 +25,34 @@ app.controller('authCtrl', function($scope, Auth) {
         $scope.authData = authData;
     });
     $scope.logout = function () {
-        Auth.unauth();
+        Auth.$unauth();
     };
 
     /**
-     * Аутентификация через почту
+     * Р›РѕРіРёРЅ СЃ РїР°СЂРѕР»РµРј
      */
     $scope.authWithPassword = function () {
-        console.log($scope.loginData);
-        Auth.authWithPassword({
+        $ionicLoading.show({
+            template: ' <ion-spinner></ion-spinner>'
+        });
+        Auth.$authWithPassword({
             email    : $scope.loginData.username,
             password : $scope.loginData.password
-        }, function(error, authData) {
-            if (error) {
-                console.log("Login Failed!", error);
-            } else {
-                console.log("Authenticated successfully with payload:", authData);
-            }
+        }).then(function(userData) {
+            console.log(userData);
+            $rootScope.login = userData.password.email;
+            $state.go('app.profile');
+        }, function (error) {
+            $scope.showAlert(error);
+        }).finally(function(){
+            $ionicLoading.hide();
+        });
+    };
+    // An alert dialog
+    $scope.showAlert = function(message) {
+        $ionicPopup.alert({
+            title: 'РћС€РёР±РєР°',
+            template: message
         });
     };
 });

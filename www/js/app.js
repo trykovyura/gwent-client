@@ -2,7 +2,7 @@
  * App module
  * @author trykov
  */
-var app = angular.module('starter', ['ionic', 'ngResource', 'ui.router', 'ngWebsocket', 'timer', 'firebase']);
+var app = angular.module('starter', ['ionic', 'ngResource', 'ui.router', 'ngWebsocket', 'timer', 'firebase', 'ngMessages']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {

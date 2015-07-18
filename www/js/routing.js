@@ -66,4 +66,34 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     });
+
+    $stateProvider.state('app.registration', {
+        url: "/registration",
+        views: {
+            'menuContent': {
+                templateUrl: "js/auth/registration/registration.html",
+                controller: 'registrationCtrl'
+            }
+        }
+    });
+
+    $stateProvider.state('app.security', {
+        url: "/security",
+        views: {
+            'menuContent': {
+                templateUrl: "js/auth/security/security.html",
+                controller: 'securityCtrl'
+            }
+        }
+    });
+
+    $stateProvider.state('app.security.changePassword', {
+        url: "/change",
+        views: {
+            'menuContent@app': {
+                templateUrl: "js/auth/security/change/change.html",
+                controller: 'changeCtrl'
+            }
+        }
+    });
 });
