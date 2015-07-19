@@ -1,0 +1,34 @@
+<ion-view view-title="Доска">
+    <div class="bar bar-stable">
+        <button class="button button-clear" ui-sref="cards">Моя колода</button>
+        <div class="title"></div>
+        <button class="button button-clear" ng-click="skip()">{{skipButtonName}}</button>
+    </div>
+    <div class="bar bar-subheader">
+        <timer interval="1000" countdown="30" finish-callback="timeout()">
+            <h2 class="title">{{$parent.status}} {{countdown}} сек.</h2>
+        </timer>
+    </div>
+    <ion-content class="has-header has-footer has-subheader padding">
+        <ion-refresher
+                pulling-text="Потяните, чтобы обновить доску"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false" active-slide="activeSlide">
+            <!-- Свой игрок-->
+            <ion-slide>
+                <div ng-include src="'js/desk/slide/home.html'"></div>
+            </ion-slide>
+            <!-- Соперник-->
+            <ion-slide>
+                <div ng-include src="'js/desk/slide/enemy.html'"></div>
+            </ion-slide>
+            <!--Все сразу-->
+            <ion-slide>
+                <div ng-include src="'js/desk/slide/total.html'"></div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+    <div class="bar bar-footer">
+    </div>
+</ion-view>

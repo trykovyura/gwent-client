@@ -1,49 +1,18 @@
-<ion-view view-title="Home">
-    <div class="bar bar-stable">
-        <button class="button button-clear" ui-sref="cards">Моя колода</button>
-        <div class="title"></div>
-        <button class="button button-clear" ng-click="skip()">{{skipButtonName}}</button>
-    </div>
-    <div class="bar bar-subheader">
-        <timer interval="1000" countdown="30" finish-callback="timeout()">
-            <h2 class="title">{{$parent.status}} {{countdown}} сек.</h2>
-        </timer>
-    </div>
-    <ion-content class="has-header has-footer has-subheader padding">
-        <ion-refresher
-                pulling-text="Потяните, чтобы обновить доску"
-                on-refresh="doRefresh()">
-        </ion-refresher>
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false" active-slide="activeSlide">
-            <!-- Свой игрок-->
-            <ion-slide>
-                <div ng-include src="'js/desk/homeSlide.html'"></div>
-            </ion-slide>
-            <!-- Соперник-->
-            <ion-slide>
-                <div ng-include src="'js/desk/enemySlide.html'"></div>
-            </ion-slide>
-            <!--Все сразу-->
-            <ion-slide>
-                <div ng-include src="'js/desk/totalSlide.html'"></div>
-            </ion-slide>
-        </ion-slide-box>
-    </ion-content>
-    <div class="bar bar-footer">
-        <ion-tabs class="tabs-positive tabs-icon-only">
+<ion-tabs class="tabs-dark tabs-icon-only">
 
-            <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-                <!-- Tab 1 content -->
-            </ion-tab>
+    <ion-tab title="Cards" icon-on="ion-briefcase" icon-off="ion-briefcase" ui-sref="app.desk.cards"
+             disabled="true">
+        <!-- Tab 1 content -->
+        <ion-nav-view name="tab-cards"></ion-nav-view>
+    </ion-tab>
 
-            <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-                <!-- Tab 2 content -->
-            </ion-tab>
+    <ion-tab title="Home" icon-on="ion-home" icon-off="ion-home" ui-sref="app.desk.home">
+        <!-- Tab 2 content -->
+        <ion-nav-view name="tab-home"></ion-nav-view>
+    </ion-tab>
 
-            <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-                <!-- Tab 3 content -->
-            </ion-tab>
+    <ion-tab title="History" icon-on="ion-chatboxes" icon-off="ion-chatboxes">
+        <!-- Tab 3 content -->
+    </ion-tab>
 
-        </ion-tabs>
-    </div>
-</ion-view>
+</ion-tabs>

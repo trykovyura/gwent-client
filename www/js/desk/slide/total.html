@@ -1,0 +1,59 @@
+<h2>Все вместе </h2>
+
+<div class="list">
+    <div class="item item-divider">
+        Верхняя секция. Сумма очков {{data.section.top.sumAttack}}
+    </div>
+    <ion-scroll direction="x">
+        <div class="item overflowingContent">
+            <img ng-repeat="card in topDeskCards track by card.id" ng-src="img/server/{{card.img}}" class="cards">
+        </div>
+    </ion-scroll>
+
+    <div class="item item-divider">
+        Средняя секция. Сумма очков {{data.section.middle.sumAttack}}
+    </div>
+    <ion-scroll direction="x">
+        <div class="item overflowingContent">
+            <img ng-repeat="card in middleDeskCards track by card.id" ng-src="img/server/{{card.img}}" class="cards">
+        </div>
+    </ion-scroll>
+
+    <div class="item item-divider">
+        Нижняя секция. Сумма очков {{data.section.bottom.sumAttack}}
+    </div>
+    <ion-scroll direction="x">
+        <div class="item overflowingContent">
+            <img ng-repeat="card in bottomDeskCards track by card.id" ng-src="img/server/{{card.img}}" class="cards">
+        </div>
+    </ion-scroll>
+
+    <h2>Враг. Сумма очков = {{data.enemySection.sumAttack}} </h2>
+
+    <div class="list">
+        <div class="item item-divider">
+            Верхняя секция. Сумма очков {{data.enemySection.top.sumAttack}}
+        </div>
+        <ion-scroll direction="x">
+            <div class="item overflowingContent">
+                <img ng-repeat="card in topEnemyDeskCards track by card.id" ng-src="img/server/{{card.img}}" class="cards">
+            </div>
+        </ion-scroll>
+        <div class="item item-divider">
+            Средняя секция. Сумма очков {{data.enemySection.middle.sumAttack}}
+        </div>
+        <ion-scroll direction="x">
+            <div class="item overflowingContent">
+                <img ng-repeat="card in middleEnemyDeskCards track by card.id" ng-src="img/server/{{card.img}}" class="cards">
+            </div>
+        </ion-scroll>
+        <div class="item item-divider">
+            Нижняя секция. Сумма очков {{data.enemySection.bottom.sumAttack}}
+        </div>
+        <ion-scroll direction="x">
+            <div class="item overflowingContent">
+                <img ng-repeat="card in bottomEnemyDeskCards track by card.id" ng-src="img/server/{{card.img}}" class="cards">
+            </div>
+        </ion-scroll>
+    </div>
+</div>
