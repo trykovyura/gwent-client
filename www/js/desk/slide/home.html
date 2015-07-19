@@ -1,5 +1,7 @@
-<h2>Ид игрока - {{data.playerId}}. Сумма очков = {{data.section.sumAttack}} </h2>
-
+<div class="text-center">
+    <h2>{{data.playerId}}</h2>
+    <h2 ng-if="data.section.sumAttack">Сумма очков = {{data.section.sumAttack}} </h2>
+</div>
 <div class="list">
     <div class="item item-divider">
         Верхняя секция. Сумма очков {{data.section.top.sumAttack}}
@@ -11,7 +13,7 @@
 
         <p>{{topCard.description}}</p>
     </a>
-    <a ng-repeat="bottomCard in data.section.top.modifiers track by $index"
+    <a ng-repeat="topCard in data.section.top.modifiers track by $index"
        class="item item-thumbnail-left">
         <img ng-src="img/server/{{topCard.img}}">
 
@@ -19,7 +21,7 @@
 
         <p>{{topCard.description}}</p>
     </a>
-    <a ng-repeat="bottomCard in data.section.top.globalModifiers track by $index"
+    <a ng-repeat="topCard in data.section.top.globalModifiers track by $index"
        class="item item-thumbnail-left">
         <img ng-src="img/server/{{topCard.img}}">
 

@@ -1,0 +1,12 @@
+<ion-view view-title="Чат/Лог">
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">Чат/Лог</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div ng-repeat="message in messages track by $index">
+            <div>
+                <span>{{message.time | date:"dd.MM.yyyy 'в' h:mm:ss:sss"}} {{ message.text }}</span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

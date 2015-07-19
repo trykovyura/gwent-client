@@ -1,4 +1,4 @@
-app.controller('authCtrl', function($scope, Auth, spinner, $ionicPopup, $state, $rootScope) {
+app.controller('authCtrl', function($scope, Auth, spinner, $ionicPopup, $state, $rootScope, wsService) {
     $scope.loginData = {
         username: '',
         password: ''
@@ -22,10 +22,11 @@ app.controller('authCtrl', function($scope, Auth, spinner, $ionicPopup, $state, 
             console.log('Logged in as', authData.uid);
         }
         // This will display the user's name in our view
-        $scope.authData = authData;
+        $rootScope.authData = authData;
     });
     $scope.logout = function () {
         Auth.$unauth();
+        $rootScope.authData = null;
         $state.go('app.auth');
     };
 
@@ -40,6 +41,7 @@ app.controller('authCtrl', function($scope, Auth, spinner, $ionicPopup, $state, 
         }).then(function(userData) {
             console.log(userData);
             $rootScope.login = userData.password.email;
+            $rootScope.authData = userData;
             $state.go('app.profile');
         }, function (error) {
             $scope.showAlert(error);
@@ -53,5 +55,17 @@ app.controller('authCtrl', function($scope, Auth, spinner, $ionicPopup, $state, 
             title: 'Ошибка',
             template: message
         });
+    };
+    
+    /**
+     * Кнопка играть/возобновить игру
+     */
+    $scope.play = function () {
+        if (wsService.isConnected()) {
+            $state.go('app.desk.messages');
+        } else {
+            wsService.newConnection();
+            $state.go('app.desk.messages');
+        }
     };
 });

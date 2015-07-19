@@ -6,6 +6,8 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
     var data;
     //Не сбрасывать карты
     var isSkiped;
+    //Отправленные и полученные сообщения
+    var messages = [];
     return {
         /**
          * init connection with ws
@@ -30,43 +32,48 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
             }
             //открылось соедиение
             ws.$on('$open', function () {
+                messages.push({time: Date.now(), text:'Соединение с сервером установлено'});
                 $rootScope.$broadcast('wsOpen');
             });
             //получили сообщение
             ws.$on('$message', function (result){
                 if (angular.isObject(result)) {
                     data = result;
+                    messages.push({time: Date.now(), text:'Получен ответ с сервера'});
                 } else {
-                    var alertPopup = $ionicPopup.alert({
-                        title: 'Внимание!',
-                        template: result
-                    });
+                    messages.push({time: Date.now(), text:result});
                 }
 
                 if (result && result.hand) {
-                    cardService.setDeskCards(result.hand);
+                    cardService.setPlayerCards(result.hand);
+                }
+                if (result && result.section) {
+                    cardService.setDeskCards(result.section);
                 }
                 $rootScope.$broadcast('wsMessage');
             });
             //закрылось соединение
             ws.$on('$close', function () {
-                cardService.clearDeskCards();
+                cardService.clearPlayerCards();
+                messages.push({time: Date.now(), text:'Соединение с сервером закрыто'});
                 $rootScope.$broadcast('wsClose');
             });
         },
         /**
          * Make a move with card
-         * @param cardId Card index
+         * @param card Card
          * @param position Позиция для хода
          */
-        moveCard : function (cardId, position) {
-            ws.$emit('PLAY', {'id' : cardId, 'position' : position});
+        moveCard : function (card, position, additional) {
+            messages.push({time: Date.now(), text:'Сделал ход картой ' + card.name});
+            ws.$emit('PLAY', {'id' : card.id, 'position' : position, additional : additional});
         },
         /**
          * Пропускаем сброс карт
          */
         skip : function () {
             if (ws && !isSkiped) {
+                messages.push({time: Date.now(), text:'Пропустить сброс карт'});
                 ws.$emit('SKIP_DROP');
                 isSkiped = true;
             }
@@ -76,16 +83,18 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          */
         pass : function () {
             if (ws) {
+                messages.push({time: Date.now(), text:'Пасс'});
                 ws.$emit('PASS');
             }
         },
         /**
          * Сброс карты
-         * @param cardId Идентификатор карты
+         * @param card Идентификатор карты
          */
-        dropCard: function (cardId) {
+        dropCard: function (card) {
             if (ws && data && data.state === 'PREPARE') {
-                ws.$emit('DROP', {id : cardId});
+                messages.push({time: Date.now(), text:'Сброс карты ' + card.name});
+                ws.$emit('DROP', {id : card.id});
             }
         },
         /**
@@ -120,6 +129,10 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          */
         isConnected: function () {
             return ws ? ws.$status() === ws.$OPEN : false;
+        },
+        
+        getMessages: function () {
+            return messages;
         }
     };
 });

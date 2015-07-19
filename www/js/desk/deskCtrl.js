@@ -2,7 +2,7 @@
  * Desk Ctrl for two players
  * @author trykov
  */
-app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsService, $ionicPopup, cardService) {
+app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsService, $ionicPopup) {
     /**
      * Имя кнопки
      * TODO пасс заточить на PLAY
@@ -52,13 +52,7 @@ app.controller('DeskCtrl', function ($scope, $ionicModal, $resource, $state, wsS
      * Обработка закрытия соединения
      */
     $scope.$on('wsClose', function () {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Внимание!',
-            template: 'Связь прервалась!'
-        });
-        alertPopup.then(function(res) {
-            $state.go('home');
-        });
+        $state.go('app.desk.messages');
     });
 
     /**

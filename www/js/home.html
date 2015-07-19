@@ -10,6 +10,9 @@
                     <ion-item menu-close ui-sref="app.auth" ng-if="!authData">
                         Войти
                     </ion-item>
+                    <ion-item menu-close ng-click="play()" ng-if="authData">
+                        Поиск соперника
+                    </ion-item>
                     <ion-item menu-close ui-sref="app.desk.home" ng-if="authData">
                         Игра
                     </ion-item>

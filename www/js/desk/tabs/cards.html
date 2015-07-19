@@ -2,9 +2,14 @@
     <ion-header-bar class="bar-stable">
         <h1 class="title">Игра</h1>
     </ion-header-bar>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-clear" ng-click="skip()">
+            {{skipButtonName}}
+        </button>
+    </ion-nav-buttons>
     <ion-content>
         <div class="list card">
-            <div ng-repeat="card in deskCards track by $index">
+            <div ng-repeat="card in playerCards track by $index">
                 <div class="item item-text-wrap">
                     <h2>{{card.name}}</h2>
                     <p>{{card.description}}</p>
@@ -17,18 +22,18 @@
                     <div class="input-label">
                         Выбор карты
                     </div>
-                    <select>
-                        <option ng-repeat="deskCard in deskCards">{{deskCard.name}}</option>
+                    <select ng-model="card.additionalSelect">
+                        <option ng-repeat="deskCard in deskCards track by $index">{{deskCard.name}}</option>
                     </select>
                 </label>
                 <!--Выбор позиции-->
                 <div class="button-bar" ng-if="card.position.length && card.position.length > 1">
-                    <a class="button button-balanced" ng-repeat="position in card.position track by $index">{{position}}</a>
+                    <a class="button button-balanced" ng-repeat="position in card.position track by $index" ng-click="moveCard(card, position)">{{position}}</a>
                 </div>
-                <button class="button button-block button-balanced" ng-if="card.position.length && card.position.length === 1">
+                <button class="button button-block button-balanced" ng-click="moveCard(card, card.position[0])" ng-if="card.position.length && card.position.length === 1">
                     {{card.position[0]}}
                 </button>
-                <button class="button button-block button-balanced" ng-if="card.position.length === 0">
+                <button class="button button-block button-balanced" ng-click="moveCard(card)" ng-if="card.position.length === 0">
                     На стол
                 </button>
             </div>

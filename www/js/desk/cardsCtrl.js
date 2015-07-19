@@ -2,11 +2,14 @@
  * Cards Ctrl for making move
  * @author trykov
  */
-app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $ionicModal, $ionicPopup) {
+app.controller('cardsCtrl', function ($scope, cardService, wsService, $state, $ionicModal, $ionicPopup) {
     /**
      * Карты игрока
      */
+    $scope.playerCards = cardService.getPlayerCards();
+    
     $scope.deskCards = cardService.getDeskCards();
+    
     /**
      * Статус игры
      */
@@ -21,26 +24,21 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
         $scope.card = card;
                 //режим сброса карт
         if (wsService.isPrepareState()) {
-            wsService.dropCard(card.id);
-            $ionicPopup.alert({
-                title: 'Вы сбросили карту!',
-                template: card.name
-            }).then(function () {
-                if (!wsService.isPrepareState()) {
-                    //TODO не переходить если наш ход
-                    $state.go('desk');
-                }
-            });
+            wsService.dropCard(card);
+            if (!wsService.isPrepareState()) {
+                //TODO не переходить если наш ход
+                $state.go('app.desk.home');
+            }
 
         } else { // режим игры
             if (!position && card.position.length && card.position.length > 1) {
-                $scope.showModal(card);
+                console.log('Не указана позиция')
             } else {
-                wsService.moveCard(card.id, position);
-                $state.go('desk');
+                console.log(card);
+                wsService.moveCard(card, position, card.additionalSelect? card.additionalSelect : null);
+                $state.go('app.desk.home');
             }
         }
-
     };
     /**
      * Обновляем статус в хедере
@@ -52,29 +50,6 @@ app.controller('CardsCtrl', function ($scope, cardService, wsService, $state, $i
                 $scope.deskCards = cardService.getDeskCards();
             }
         });
-    });
-
-    /**
-     * Открывает меню выбора позиции
-     */
-    $scope.showModal = function () {
-        $ionicModal.fromTemplateUrl('js/modal/position.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            $scope.modal = modal;
-            $scope.modal.show();
-        })
-    };
-
-    /**
-     * При смене состояния закрываем модальное окно
-     */
-    $scope.$on('$destroy', function () {
-        if ($scope.modal) {
-            $scope.modal.remove();
-        }
-        $scope.card = null;
     });
 
 

@@ -2,7 +2,7 @@
  * App routing for states
  */
 app.config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home/desk/home');
+    $urlRouterProvider.otherwise('/home/auth');
     /**
      * Home state, opens window modal
      */
@@ -39,7 +39,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         views: {
             'tab-cards': {
                 templateUrl: "js/desk/tabs/cards.html",
-                controller: 'CardsCtrl'
+                controller: 'cardsCtrl'
+            }
+        }
+    });
+    $stateProvider.state('app.desk.messages', {
+        url: '/messages',
+        views: {
+            'tab-messages': {
+                templateUrl: "js/desk/tabs/messages.html",
+                controller: 'messagesCtrl'
             }
         }
     });

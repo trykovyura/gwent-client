@@ -1,6 +1,6 @@
-<ion-view>
+<ion-view view-title="Вход">
     <ion-nav-buttons side="secondary">
-        <button class="button button-clear" ui-sref="app.registration">
+        <button class="button button-clear" ui-sref="app.registration" ng-if="!authData">
             Регистрация
         </button>
     </ion-nav-buttons>
