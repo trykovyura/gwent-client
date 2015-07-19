@@ -1,7 +1,7 @@
 /**
  * Регистрация пользователя
  */
-app.controller('registrationCtrl', function($scope, $state, $ionicLoading, $ionicPopup, Auth) {
+app.controller('registrationCtrl', function($scope, $state, spinner, $ionicPopup, Auth) {
     $scope.loginData = {
         username: '',
         password: '',
@@ -15,9 +15,7 @@ app.controller('registrationCtrl', function($scope, $state, $ionicLoading, $ioni
             form.confirmPassword.$setValidity("equals", false);
             return;
         }
-        $ionicLoading.show({
-            template: ' <ion-spinner></ion-spinner>'
-        });
+        spinner.show();
         var create = Auth.$createUser({
             email    : $scope.loginData.username,
             password : $scope.loginData.password
@@ -26,7 +24,7 @@ app.controller('registrationCtrl', function($scope, $state, $ionicLoading, $ioni
         }, function (error) {
             $scope.showAlert(error);
         }).finally(function(){
-            $ionicLoading.hide();
+            spinner.hide();
         });
     };
 

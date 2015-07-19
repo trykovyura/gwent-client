@@ -1,7 +1,7 @@
 /**
  * Регистрация пользователя
  */
-app.controller('changeCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $rootScope, Auth) {
+app.controller('changeCtrl', function($scope, $state, spinner, $ionicPopup, $rootScope, Auth) {
     $scope.loginData = {
         username: $rootScope.login,
         oldPassword: '',
@@ -16,9 +16,7 @@ app.controller('changeCtrl', function($scope, $state, $ionicLoading, $ionicPopup
             form.confirmPassword.$setValidity("equals", false);
             return;
         }
-        $ionicLoading.show({
-            template: ' <ion-spinner></ion-spinner>'
-        });
+        spinner.show();
         Auth.$changePassword({
             email    : $scope.loginData.username,
             oldPassword : $scope.loginData.oldPassword,
@@ -28,7 +26,7 @@ app.controller('changeCtrl', function($scope, $state, $ionicLoading, $ionicPopup
         }, function (error) {
             $scope.showAlert(error);
         }).finally(function(){
-            $ionicLoading.hide();
+            spinner.hide();
         });
     };
 

@@ -96,4 +96,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     });
+
+    $stateProvider.state('app.security.resetPassword', {
+        url: "/reset",
+        views: {
+            'menuContent@app': {
+                templateUrl: "js/auth/security/reset/reset.html",
+                controller: 'resetCtrl'
+            }
+        }
+    });
 });

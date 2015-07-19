@@ -1,4 +1,4 @@
-app.controller('authCtrl', function($scope, Auth, $ionicLoading, $ionicPopup, $state, $rootScope) {
+app.controller('authCtrl', function($scope, Auth, spinner, $ionicPopup, $state, $rootScope) {
     $scope.loginData = {
         username: '',
         password: ''
@@ -26,15 +26,14 @@ app.controller('authCtrl', function($scope, Auth, $ionicLoading, $ionicPopup, $s
     });
     $scope.logout = function () {
         Auth.$unauth();
+        $state.go('app.auth');
     };
 
     /**
      * Логин с паролем
      */
     $scope.authWithPassword = function () {
-        $ionicLoading.show({
-            template: ' <ion-spinner></ion-spinner>'
-        });
+        spinner.show();
         Auth.$authWithPassword({
             email    : $scope.loginData.username,
             password : $scope.loginData.password
@@ -45,7 +44,7 @@ app.controller('authCtrl', function($scope, Auth, $ionicLoading, $ionicPopup, $s
         }, function (error) {
             $scope.showAlert(error);
         }).finally(function(){
-            $ionicLoading.hide();
+            spinner.hide();
         });
     };
     // An alert dialog

@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-content class="has-header login">
+        <form name="myForm" ng-submit="resetPassword()">
+            <div class="list">
+                <label class="item item-input">
+                    <input name="username" type="email" ng-model="loginData.username" placeholder="Логин" required>
+
+                    <div ng-messages="myForm.username.$error" ng-if="myForm.username.$dirty" style="color:maroon">
+                        <div ng-message="required">Поле обязательно для заполнения</div>
+                        <div ng-message="email">Должен быть указан корректный адрес электронной почты</div>
+                    </div>
+                </label>
+            </div>
+            <button class="button button-full button-dark" type="submit">Восстановить пароль</button>
+        </form>
+
+    </ion-content>
+</ion-view>
