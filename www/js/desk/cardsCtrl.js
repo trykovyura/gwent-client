@@ -19,8 +19,9 @@ app.controller('cardsCtrl', function ($scope, cardService, wsService, $state, $i
      * Сделать ход
      * @param card карта для хода
      * @param position позиция карты
+     * @param additionalCardId идентификатор дополнительной карты
      */
-    $scope.moveCard = function (card, position) {
+    $scope.moveCard = function (card, position, additionalCardId) {
         $scope.card = card;
                 //режим сброса карт
         if (wsService.isPrepareState()) {
@@ -35,7 +36,7 @@ app.controller('cardsCtrl', function ($scope, cardService, wsService, $state, $i
                 console.log('Не указана позиция')
             } else {
                 console.log(card);
-                wsService.moveCard(card, position, card.additionalSelect? card.additionalSelect : null);
+                wsService.moveCard(card, position, additionalCardId? additionalCardId : null);
                 $state.go('app.desk.home');
             }
         }

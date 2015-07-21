@@ -63,10 +63,11 @@ app.factory('wsService', function($websocket, $rootScope, cardService, $ionicPop
          * Make a move with card
          * @param card Card
          * @param position Позиция для хода
+         * @param additionalCardId Идентификатор дополнительной карты
          */
-        moveCard : function (card, position, additional) {
-            messages.push({time: Date.now(), text:'Сделал ход картой ' + card.name});
-            ws.$emit('PLAY', {'id' : card.id, 'position' : position, additional : additional});
+        moveCard : function (card, position, additionalCardId) {
+            messages.push({time: Date.now(), text:'Сделал ход картой ' + card.name + (additionalCardId ? 'Дополнительная информация ' + additionalCardId : '')});
+            ws.$emit('PLAY', {'id' : card.id, 'position' : position, additional : {id : additionalCardId}});
         },
         /**
          * Пропускаем сброс карт
